@@ -1,0 +1,63 @@
+﻿@model Carnotaurus.GhostPubsMvc.Data.Models.ViewModels.OutputViewModel
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.Title = Model.JumboTitle;
+    ViewBag.MetaDescription = Model.MetaDescription;
+    ViewBag.ArticleDescription = Model.ArticleDescription;
+}
+
+<!-- Subhead
+    ================================================== -->
+<header class="jumbotron subhead">
+    <div class="container">
+        <div>
+            <h1>@Model.JumboTitle</h1>
+            <p class="lead">
+                @Model.ArticleDescription
+            </p>
+        </div>
+    </div>
+</header>
+
+<div class="container">
+    <!-- Docs nav
+        ================================================== -->
+    <div class="row">
+
+        <a href="/" title="Home">Missing</a>
+
+        <span>&gt;&nbsp;</span>
+        <span>@Model.JumboTitle</span>
+
+    </div>
+    <div class="row">
+        <div class="span4">
+            <div>
+                <div>
+                    <img width='200' height='200' onclick=" window.open('http://www.ghostpubs.com/haunted-pubs/uk.html', '_self'); " class="img-circle face-relative" src="~/Content/bootstrap/231/img/ghostpubs/padded-logo-125x125.png" alt="Ghost Pubs" title="Ghost Pubs" />
+
+                </div>
+
+            </div>
+        </div>
+        <div class="span8">
+
+            <!-- Well
+                ================================================== -->
+            <section id="well">
+                <div class="page-header">
+                    <h2>Page moved</h2>
+                </div>
+                <h3>The page you requested has moved</h3>
+                <div class="well well-large">
+                    <p>
+                        Try here:
+                    </p>
+                    <p>
+                        <a href="@Model.Url" title="@Model.JumboTitle">@Model.JumboTitle</a>
+                    </p>
+                </div>
+            </section>
+        </div>
+    </div>
+</div>

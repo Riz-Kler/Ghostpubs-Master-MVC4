@@ -1,0 +1,104 @@
+﻿@model Carnotaurus.GhostPubsMvc.Data.Models.ViewModels.OutputViewModel
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.Title = "Haunted pubs with a ghostly difference | Welcome to Ghost Pubs";
+    ViewBag.MetaDescription = Model.MetaDescription;
+    ViewBag.ArticleDescription = Model.ArticleDescription;
+    ViewBag.Link = "http://www.ghostpubs.com/haunted-pubs/home.html";
+}
+<!-- Subhead
+    ================================================== -->
+<header class="jumbotron subhead">
+    <div class="container">
+        <div class="span4 pull-left">
+            <img width='200' height='200' onclick=" window.open('http://www.ghostpubs.com/haunted-pubs/uk.html', '_self'); " src="~/Content/bootstrap/231/img/ghostpubs/padded-logo-125x125.png" alt="Ghost Pubs" title="Ghost Pubs" />
+        </div>
+        <div class="pull-left">
+            <div>
+                <h1>@Model.JumboTitle</h1>
+                <p class="lead">
+                    @Model.ArticleDescription
+                </p>
+            </div>
+        </div>
+    </div>
+</header>
+
+<div class="container">
+    <div class="container theme-showcase">
+
+        <div class="">
+
+            <div class="pull-left">
+                <a href="/haunted-pubs/uk.html" class="btn btn-primary btn-lg" title="Find">Find for a haunted pub</a>
+            </div>
+            <p>&nbsp;</p>
+            <p>&nbsp;</p>
+        </div>
+
+
+        <!-- Carousel
+            ================================================== -->
+        <div id="myCarousel" class="carousel slide">
+            <!-- Indicators -->
+            <ol class="carousel-indicators">
+                <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+                <li data-target="#myCarousel" data-slide-to="1"></li>
+                <li data-target="#myCarousel" data-slide-to="2"></li>
+            </ol>
+            <div class="carousel-inner">
+                <div class="item active">
+                    <img width="1200" height="500" src="/haunted-pubs/uk/01.jpg" alt="Ghost Pubs wishes you a Happy Easter!">
+                    <div class="container">
+                        <div class="carousel-caption">
+                            <h2>Please Donate</h2>
+                            <p>Pledge a small donation to keep Ghost Pubs alive</p>
+                            <p>&nbsp;</p>
+                            <p><a href="http://www.crowdfunder.co.uk/ghost-pubs-uk" title="Pledge a small donation to keep Ghost Pubs alive" class="btn btn-primary btn-lg">Click to donate&raquo;</a></p>
+                        </div>
+                    </div>
+                </div>
+                <div class="item">
+                    <img width="1200" height="500" src="/haunted-pubs/uk/02.jpg" alt="We have around one thousand haunted public houses listed">
+                    <div class="container">
+                        <div class="carousel-caption">
+                            <h2>Enjoy food and drink</h2>
+                            <p>We have around one thousand five hundred haunted public houses listed.</p>
+                            <p>&nbsp;</p>
+                            <p><a href="/haunted-pubs/uk.html" title="search" class="btn btn-primary btn-lg">Find a haunted pub</a></p>
+                        </div>
+                    </div>
+                </div>
+                <div class="item">
+                    <img width="1200" height="500" src="/haunted-pubs/uk/03.jpg" alt="Latest figures on the most haunted towns">
+                    <div class="container">
+                        <div class="carousel-caption">
+                            <h2>Latest figures on the most haunted towns</h2>
+                            <p>At a glance at our leaderboard, you can see the most haunted locations</p>
+                            <p>&nbsp;</p>
+                            <p><a class="btn btn-large btn-primary" title="leaderboard" href="/haunted-pubs/uk/sitemap.html">View leaderboard</a></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <a class="left carousel-control" href="#myCarousel" title="previous" data-slide="prev"><span class="glyphicon glyphicon-chevron-left"></span></a>
+            <a class="right carousel-control" href="#myCarousel" title="next" data-slide="next"><span class="glyphicon glyphicon-chevron-right"></span></a>
+        </div>
+        <!-- /.carousel -->
+        <hr />
+        <h2>Click on our haunted geographical areas below:</h2>
+        <div class="pull-left">
+            @foreach (var link in Model.PageLinks)
+            {
+                <a class="btn btn-primary btn-lg" title='@link.Title' href='@link.Url'>@link.Text</a>
+            }
+        </div>
+        <hr />
+
+        <p>
+
+            <div class="fb-like" data-href="@ViewBag.Link" data-layout="standard" data-action="like" data-show-faces="true" data-share="true"></div>
+
+        </p>
+    </div>
+</div>

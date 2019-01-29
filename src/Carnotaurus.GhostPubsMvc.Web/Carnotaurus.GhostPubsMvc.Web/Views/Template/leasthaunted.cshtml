@@ -1,0 +1,110 @@
+﻿@model Carnotaurus.GhostPubsMvc.Data.Models.ViewModels.OutputViewModel
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.Title = string.Format("{0} | GhostPubs.com", Model.JumboTitle);
+    ViewBag.Link = "http://www.ghostpubs.com/haunted-pubs/uk.html";
+    ViewBag.MetaDescription = Model.MetaDescription;
+    ViewBag.ArticleDescription = Model.ArticleDescription;
+
+    ViewBag.Tag = Model.Tag;
+    ViewBag.Tags = Model.Tags;
+}
+
+<!-- Subhead
+    ================================================== -->
+<header class="jumbotron subhead">
+    <div class="container">
+        <div>
+            <h1>@Model.JumboTitle</h1>
+            <p class="lead">
+                @Model.ArticleDescription
+            </p>
+        </div>
+    </div>
+</header>
+
+<div class="container">
+
+    <!-- Docs nav
+        ================================================== -->
+    <div class="row">
+
+        <a href="/" title="Home">Home</a>
+
+        <span>&gt;&nbsp;</span>
+        <span>@Model.JumboTitle</span>
+    </div>
+    <div class="row"><p>&nbsp;</p></div>
+    <div class="row">
+        <div class="span4 bs-docs-sidebar text-center">
+            <div>
+                <div>
+                    @*<a href="/haunted-pubs/uk.html">*@
+                    <img width='200' height='200' onclick=" window.open('http://www.ghostpubs.com/haunted-pubs/uk.html', '_self'); " class="img-circle face-relative" src="~/Content/bootstrap/231/img/ghostpubs/padded-logo-125x125.png" alt="Ghost Pubs" title="Ghost Pubs" />
+                    @*</a>*@
+                </div>
+
+                <div class="btn-group btn-group-vertical">
+
+                </div>
+            </div>
+        </div>
+
+        <div class="span8">
+
+            <!-- Carousel
+                ================================================== -->
+            <section id="carousel">
+                <h2>The background behind this campaign</h2>
+                <p>
+                    We need your help! In early January 2015, we were approached by a Senior Features Reporter for the North West Evening Mail.
+                    He noticed that we did not list any haunted pubs for the <a href="http://www.ghostpubs.com/haunted-pubs/barrow-in-furness-district.html" rel="nofollow" title="No haunted pubs in Barrow-in-Furness?">Barrow-in-Furness</a> district.
+                    This is because we do not have any information on haunted pubs in the area. This is not to say that there are no haunted pubs in Barrow.
+                    We could not find any; and we have tried. Therefore, he wrote an article and put it in the newspaper.
+                    The article is here for us all to read: <a href="http://www.nwemail.co.uk/news/does-your-regular-haunt-have-ghosts-1.1185925"
+                                                               title="Does your regular haunt have ghosts?"
+                                                               rel="nofollow"
+                                                               target="nwemail">Does your regular haunt have ghosts?</a>
+                </p>
+                <p>
+                    Even with the help of the media, we still cannot find haunted pubs in Barrow.
+                    We also noticed that there are other districts throughout the United Kingdom, where haunted pub information is not forthcoming.
+                    So, we decided to compile a list of least haunted local authorities (i.e., those local authorities that have zero haunted pub listings on our website).
+                    If you can find one in the following areas then we will give you full credit for your efforts on our website.
+                </p>
+                <p>
+                    Particularly, we noticed that Northern Ireland does not seem have many haunted pubs.
+                    Oddly, we noticed the district of Cannock Chase, in Staffordshire, appears to have zero haunted pubs.
+                    This is supposedly the location of the most famous Four Crosses pub.
+                    The pub occupied the news for months in late 2014 and still swamps searches when looking for haunted pubs in the district of Cannock Chase.
+                    Unless our address validation services are incorrect, which is doubtful as these are issued by the UK government, the Four Crosses is not in the district of Cannock Chase.
+                    It is instead in the authority of South Staffordshire.
+                </p>
+
+                <h3>The list of local authorities that apparently have no haunted pubs</h3>
+                <h4>Please help us find haunted pubs in the following areas:</h4>
+                <p>
+                    We need your support. So, please make a donation through this link <a class="masthead-links-override" rel="nofollow" title="Please donate" href="http://www.crowdfunder.co.uk/ghost-pubs-uk"><i class="icon-heart masthead-links-override"></i>donate</a>
+                </p>
+                <ul>
+                    @foreach (var link in Model.PageLinks)
+                    {
+                        <li>
+                            @link.Text
+                        </li>
+                    }
+                </ul>
+
+                <div id="fb-root"></div>
+
+                <div class="fb-comments" data-href="@ViewBag.Link" data-numposts="5" data-colorscheme="dark"></div>
+
+                <div class="fb-like" data-href="@ViewBag.Link" data-layout="standard" data-action="like" data-show-faces="true" data-share="true"></div>
+
+                <hr class="bs-docs-separator">
+            </section>
+        </div>
+    </div>
+
+
+</div>

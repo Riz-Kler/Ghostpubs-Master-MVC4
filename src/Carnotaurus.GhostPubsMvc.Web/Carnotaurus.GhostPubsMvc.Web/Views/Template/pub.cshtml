@@ -1,0 +1,148 @@
+﻿@model Carnotaurus.GhostPubsMvc.Data.Models.ViewModels.OutputViewModel
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.Title = string.Format("{0}, {1}", Model.PageTitle, Model.Lineage.Locality.Text);
+    ViewBag.Link = Model.Url;
+    ViewBag.MetaDescription = Model.MetaDescription;
+    ViewBag.ArticleDescription = Model.ArticleDescription;
+
+    ViewBag.Tag = Model.Tag;
+    ViewBag.Tags = Model.Tags;
+}
+
+<!-- Subhead
+    ================================================== -->
+<header class="jumbotron subhead">
+    <div class="container">
+        <div>
+            <h1>@Model.JumboTitle</h1>
+            <p class="lead">
+                Haunted pub details for @Model.JumboTitle
+            </p>
+        </div>
+    </div>
+</header>
+
+<div class="container">
+    <!-- Docs nav
+        ================================================== -->
+    <div class="row">
+
+        <a href="/" title="Home">Home</a>
+
+        <span>&gt;</span>
+        <a href="/haunted-pubs/uk.html" title="Regions">Regions</a>
+
+        @if (Model.Lineage.Region != null)
+        {
+            <span>&gt;</span>
+            <a href="@Model.Lineage.Region.Url" title="@Model.Lineage.Region.Title">@Model.Lineage.Region.Text</a>
+        }
+
+        @if (Model.Lineage.Authority != null)
+        {
+            <span>&gt;</span>
+            <a href="@Model.Lineage.Authority.Url" title="@Model.Lineage.Authority.Title">@Model.Lineage.Authority.Text</a>
+        }
+
+        @if (Model.Lineage.Locality != null)
+        {
+            <span>&gt;</span>
+            <a href="@Model.Lineage.Locality.Url" title="@Model.Lineage.Locality.Title">@Model.Lineage.Locality.Text</a>
+        }
+
+        @if (Model.Lineage.Organisation != null)
+        {
+            <span>&gt;&nbsp;</span>
+            <span>@Model.Lineage.Organisation.Text</span>
+        }
+
+    </div>
+    <div class="row">
+        <div class="span4">
+            <div>
+                <div>
+                    <img width='200' height='200' onclick=" window.open('http://www.ghostpubs.com/haunted-pubs/uk.html', '_self'); " class="img-circle face-relative" src="~/Content/bootstrap/231/img/ghostpubs/padded-logo-125x125.png" alt="Ghost Pubs" title="Ghost Pubs" />
+
+                </div>
+
+            </div>
+        </div>
+
+        <div class="span8">
+
+            <!-- Well
+                ================================================== -->
+            <section id="well">
+                <div class="page-header">
+                    <h2>All about @Model.JumboTitle</h2>
+                </div>
+                <h3>@Model.JumboTitle</h3>
+                <div class="well well-large">
+                    <p>If you can improve the ghost story for this pub then please get in touch with us on <a href="https://twitter.com/ghost_pubs" rel="nofollow">twitter</a> or <a href="https://www.facebook.com/groups/ghostpubs/" rel="nofollow">facebook</a>. You'll receive full credit and you may win a prize.</p>
+                    <p>@Model.ArticleDescription</p>
+                    <ul>
+                        <li>
+                            @Model.Description
+                        </li>
+                    </ul>
+                    <p>
+                        @foreach (var tag in Model.Tags)
+                        {
+                            <span class="label label-info">@tag</span>
+                        }
+                    </p>
+
+                    @if (Model.OtherNames.Count > 0)
+                    {
+                        <p>Other names for this pub:</p>
+                        foreach (var linkModel in @Model.OtherNames)
+                        {
+                            <a class="label label-info" href="@linkModel.Url" title="@linkModel.Title">@linkModel.Text</a>
+                        }
+                        <p>&nbsp;</p>
+                    }
+
+                    @if (Model.IsMapAvailable)
+                    {
+                        <div id="map" style="width: 720px; height: 400px"></div>
+
+                        <script>
+
+                            var map = L.map('map').setView([@Model.Lat, @Model.Lon], 13);
+
+                            // add an OpenStreetMap tile layer
+                            L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
+                                attribution: '&copy; <a href="http://osm.org/copyright" rel="nofollow">OpenStreetMap</a> contributors'
+                            }).addTo(map);
+
+                            L.marker([@Model.Lat, @Model.Lon]).addTo(map)
+                                .bindPopup("<b>@Model.JumboTitle</b>").openPopup();
+
+                            var popup = L.popup();
+
+                        </script>
+
+                    }
+                    @if (Model.Next != null)
+                    {
+                        <p>&nbsp;</p>
+                        <p>
+                            Want to read about&nbsp;<a href='@Model.Next.Url' title="Next to @Model.Next.Title">@Model.Next.Title?</a> |
+                            <a href='@Model.Lineage.Locality.Url' title="Back to @Model.Lineage.Locality.Text">Back to @Model.Lineage.Locality.Text</a>
+                        </p>
+                    }
+
+                    <div class="fb-like" data-href="@ViewBag.Link" data-layout="standard" data-action="like" data-show-faces="true" data-share="true"></div>
+
+                    <div id="fb-root"></div>
+
+                    <div class="fb-comments" data-href="@ViewBag.Link" data-numposts="5" data-colorscheme="dark"></div>
+
+                    <hr class="bs-docs-separator">
+                </div>
+                <hr>
+            </section>
+        </div>
+    </div>
+</div>
